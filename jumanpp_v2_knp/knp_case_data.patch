@@ -1,0 +1,15 @@
+diff --git a/system/case_data.c b/system/case_data.c
+index 03eb6c9..ac9f8e8 100644
+--- a/system/case_data.c
++++ b/system/case_data.c
+@@ -593,8 +593,8 @@ int make_data_cframe_child(SENTENCE_DATA *sp, CF_PRED_MGR *cpm_ptr, TAG_DATA *ch
+ 
+     for (child_num = 0; b_ptr->child[child_num]; child_num++);
+ 
+-    /* 自分(用言)が複合名詞内 */
+-    if (b_ptr->inum > 0) {
++    /* 自分(用言)が複合名詞内 */ /* 2018/08/15 Added parent check */
++    if (b_ptr->inum > 0 && b_ptr->parent) {
+ 	TAG_DATA *t_ptr;
+ 
+ 	/* 自分(用言)が複合名詞内のときの親 : 被連体修飾詞扱い
