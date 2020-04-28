@@ -18,10 +18,10 @@ RUN mkdir -p ${TARGET_DIR} &&\
 FROM ubuntu:18.04 as run-env
 ARG TARGET_DIR=/var/task
 COPY --from=build-env ${TARGET_DIR}/bin/jumanpp \
-    /bin/jumanpp
+    ${TARGET_DIR}/bin/jumanpp
 COPY --from=build-env ${TARGET_DIR}/libexec/jumanpp/jumandic.config \
     ${TARGET_DIR}/libexec/jumanpp/jumandic.config
 COPY --from=build-env ${TARGET_DIR}/libexec/jumanpp/jumandic.jppmdl \
     ${TARGET_DIR}/libexec/jumanpp/jumandic.jppmdl
-        
+RUN ln -s ${TARGET_DIR}/bin/jumanpp /bin/jumanpp 
 ENTRYPOINT ["/bin/jumanpp"]
